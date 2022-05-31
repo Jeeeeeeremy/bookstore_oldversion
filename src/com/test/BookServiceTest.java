@@ -1,0 +1,47 @@
+package com.test;
+
+import com.pojo.Book;
+import com.service.BookService;
+import com.service.impl.BookServiceImpl;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+
+import static org.junit.Assert.*;
+
+public class BookServiceTest {
+
+    private BookService bookService = new BookServiceImpl();
+
+    @Test
+    public void addBook() {
+        bookService.addBook(new Book(null,"增加这本书", "author", new BigDecimal(1000000), 100000000, 0, null));
+    }
+
+    @Test
+    public void deleteBookById() {
+        bookService.deleteBookById(22);
+    }
+
+    @Test
+    public void updateBook() {
+        bookService.updateBook(new Book(12,"更新这本书", "author", new BigDecimal(999999), 10, 111110, null));
+    }
+
+    @Test
+    public void queryBookById() {
+        System.out.println(bookService.queryBookById(20));
+    }
+
+    @Test
+    public void queryBooks() {
+        for (Book queryBook : bookService.queryBooks()) {
+            System.out.println(queryBook);
+        }
+    }
+
+    @Test
+    public void page() {
+        System.out.println(bookService.page(1,4));
+    }
+}
